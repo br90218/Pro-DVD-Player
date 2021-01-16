@@ -257,11 +257,12 @@ public class GameMaster : MonoBehaviour
 
 
         StartCoroutine(RewindRoutine());
-        ChangeStateTo(GameState.REWIND);
+        
     }
     
     private IEnumerator RewindRoutine()
     {
+        ChangeStateTo(GameState.REWIND);
         _player.MovingVector = Vector3.zero;
 
         while(_bouncedPositions.Count > 0)
@@ -382,6 +383,4 @@ public class GameMaster : MonoBehaviour
             yield return null;
         }
     }
-
-
 }
