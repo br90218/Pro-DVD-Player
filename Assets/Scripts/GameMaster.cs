@@ -21,7 +21,6 @@ public class GameMaster : MonoBehaviour
 
     public GameMode gameMode;
 
-
     internal enum GameState
     {
         PAUSE, PLAY, CLEAR, REWIND, WIN, DEATH

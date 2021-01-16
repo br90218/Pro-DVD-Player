@@ -66,7 +66,7 @@ public class StatusInfoManager : MonoBehaviour
             result += _status;
         }
         else
-    {
+        {
             result += "TARGET:" + _target;
             if(_color.Length == 0) result += "\n";
             else result += ", " + _color + "\n";
