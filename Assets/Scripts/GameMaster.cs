@@ -42,6 +42,10 @@ public class GameMaster : MonoBehaviour
     private int _currentLevel;
     private bool _scoreShown = false;
 
+    [SerializeField] private int harderLevel = 5;
+    [SerializeField] private int hardestLevel = 7;
+    [SerializeField] private int winLevel = 10;
+
 
     private void Awake() {
         if(Instance == null)
@@ -163,19 +167,17 @@ public class GameMaster : MonoBehaviour
             _statusInfo.UpdateCurrent(_bounces);
         }
 
-        if(gameMode == GameMode.NORMAL && _currentLevel == 15)
+        if(gameMode == GameMode.NORMAL && _currentLevel == winLevel)
         {
             ChangeStateTo(GameState.WIN);
             return;
         }
         
-
-        
         _currentLevel++;
         DecideCorner();
-        DecideColor((_currentLevel <=5 ? -1 : 0));  
+        DecideColor((_currentLevel <= harderLevel ? -1 : 0));  
 
-        if(_currentLevel > 10)
+        if(_currentLevel > hardestLevel)
         {
             DecidePlayerPosition(true);
         }
@@ -226,9 +228,6 @@ public class GameMaster : MonoBehaviour
         _startingPosition = _player.transform.position;
     }
 
-
-
-
     internal void Rewind()
     {
         if(_currState != GameState.PLAY)
@@ -251,12 +250,7 @@ public class GameMaster : MonoBehaviour
             GameMaster.Instance.NoOps();
             return;
         }
-
-       
-
-
         StartCoroutine(RewindRoutine());
-        
     }
     
     private IEnumerator RewindRoutine()
@@ -355,7 +349,6 @@ public class GameMaster : MonoBehaviour
         _audio.PlayDeath();
         yield return new WaitForSeconds(1.7f);
         Application.Quit();
-        
     }
 
     internal void NoOps()
