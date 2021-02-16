@@ -43,12 +43,6 @@ public class StatusInfoManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     internal void UpdateText()
     {
         string result = string.Empty;
@@ -231,6 +225,7 @@ public class StatusInfoManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         DeathText.enabled = true;
+        Tutorial.enabled = false;
         DeathText.text = "YOU'VE MANAGED TO EXTEND YOUR LIFE FOR ANOTHER " + time.ToString("F0") + " SECONDS.";
         yield return new WaitForSeconds(5f);
         DeathText.text = string.Empty;
@@ -241,5 +236,4 @@ public class StatusInfoManager : MonoBehaviour
             yield return null;
         }
     }
-
 }
